@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="POJOS.C_Reserva" table="reservas">
+        <id name="codigo" >
+            <generator class="increment"/>
+        </id>
+        <property name="fechaEntrada" />
+        <property name="cantidad" />
+        <many-to-one name="hotel" class="POJOS.C_Hotel"/>
+        <set name="clientes" table="clientes_reservas" cascade="save-update" >
+            <key column="reserva" />
+            <many-to-many class="POJOS.C_Cliente" column="cliente" />
+        </set>
+    </class>
+</hibernate-mapping>
